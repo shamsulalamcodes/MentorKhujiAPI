@@ -39,6 +39,16 @@ app.get('/tutions', async (req, res) => {
     res.send(ress)
 })
 
+app.get('/latestTutions', async (req, res) => {
+    const ress = await tutionsCollection.find({ approvalStatus: "approved" }).sort({ createdAt: -1 }).limit(6).toArray()
+    res.send(ress)
+})
+
+app.get('/approvedTutions', async (req, res) => {
+    const ress = await tutionsCollection.find({ "approvalStatus": "approved" }).sort({ createdAt: -1 }).toArray()
+    res.send(ress)
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
