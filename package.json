@@ -1,0 +1,20 @@
+{
+  "name": "mentorkhujiapi",
+  "version": "1.0.0",
+  "description": "mentorkhujiapi",
+  "homepage": "https://github.com/shamsulalamcodes/MentorKhujiAPI#readme",
+  "bugs": {
+    "url": "https://github.com/shamsulalamcodes/MentorKhujiAPI/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shamsulalamcodes/MentorKhujiAPI.git"
+  },
+  "license": "ISC",
+  "author": "shamsulalamcodes",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
