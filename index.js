@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors'
 import dotenv from 'dotenv'
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 dotenv.config()
 
 const app = express();
@@ -45,8 +45,13 @@ app.get('/latestTutions', async (req, res) => {
 })
 
 app.get('/approvedTutions', async (req, res) => {
-    const ress = await tutionsCollection.find({ "approvalStatus": "approved" }).sort({ createdAt: -1 }).toArray()
+    const ress = await tutionsCollection.find({ approvalStatus: "approved", isActive: true }).sort({ createdAt: -1 }).toArray()
     res.send(ress)
+})
+
+app.get('/tution/:id', async (req, res) => {
+    const ees = await tutionsCollection.findOne({ _id: new ObjectId(req.params.id) })
+    res.send(ees)
 })
 
 app.listen(port, () => {
