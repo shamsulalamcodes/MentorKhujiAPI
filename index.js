@@ -25,6 +25,8 @@ export async function connectToMongoDB() {
     }
 }
 
+//custom Express middlewares: verifyToken, verifyStudent, verifyTutor, and verifyAdmin
+
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
