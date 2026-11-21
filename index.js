@@ -5,6 +5,7 @@ import { MongoClient, ObjectId } from 'mongodb';
 dotenv.config()
 
 const app = express();
+app.use(express.json())
 app.use(cors())
 const port = process.env.PORT || 4000;
 
@@ -54,6 +55,13 @@ app.get('/approvedTutions', async (req, res) => {
 app.get('/tution/:id', async (req, res) => {
     const ees = await tutionsCollection.findOne({ _id: new ObjectId(req.params.id) })
     res.send(ees)
+})
+
+app.patch("/users/:id", async (req, res) => {
+    const { name, email, photo } = req.body
+    const update = { name, email, ...(photo && { photo }) }
+    const result = await usersCollection.updateOne({ _id: new ObjectId(req.params.id) }, { $set: update })
+    if (result.modifiedCount > 0) res.json(await usersCollection.findOne({ _id: new ObjectId(req.params.id) }))
 })
 
 app.listen(port, () => {
