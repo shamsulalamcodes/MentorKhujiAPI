@@ -62,6 +62,7 @@ app.patch("/users/:id", async (req, res) => {
     const update = { name, email, ...(photo && { image: photo }) }
     const result = await usersCollection.updateOne({ _id: new ObjectId(req.params.id) }, { $set: update })
     if (result.modifiedCount > 0) res.json(await usersCollection.findOne({ _id: new ObjectId(req.params.id) }))
+    else return res.json({ message: 'Profile updation failed!' })
 })
 
 app.listen(port, () => {
