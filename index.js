@@ -59,7 +59,7 @@ app.get('/tution/:id', async (req, res) => {
 
 app.patch("/users/:id", async (req, res) => {
     const { name, email, photo } = req.body
-    const update = { name, email, ...(photo && { photo }) }
+    const update = { name, email, ...(photo && { image: photo }) }
     const result = await usersCollection.updateOne({ _id: new ObjectId(req.params.id) }, { $set: update })
     if (result.modifiedCount > 0) res.json(await usersCollection.findOne({ _id: new ObjectId(req.params.id) }))
 })
